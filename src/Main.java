@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 import java.math.MathContext;
 
@@ -10,7 +11,8 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
         //System.out.println("Wproawdz stopnie celsjusza:");
         Scanner text = new Scanner(System.in);
-/*
+        System.out.println("Podaj stopnie celsjysza:");
+
         float celsius = text.nextFloat();
         float fahrenheit = (float)1.8 * celsius + (float)32.0;
         System.out.println(celsius+ " Stopni celsjusza to:\n" + fahrenheit +  " Stopni Fahreneita");
@@ -37,7 +39,7 @@ public class Main {
         float waga = text.nextFloat();
         System.out.println("Podaj wzrost cm:");
         float wzrost = text.nextFloat();
-        wzrost = wzrost /100;1
+        wzrost = wzrost /100;
         float bmi = (waga) / (wzrost * wzrost);
         System.out.println("BMI: " + bmi);
 
@@ -62,7 +64,83 @@ public class Main {
             podatek = (float)14839.02 + ((nadwyzka / 100) * 32);
         }
         System.out.println("Podatek to: " + podatek);
-*/
+
+        System.out.println("Podaj cenę towaru między 100 a 10000");
+
+        float cenatowaru = 0;
+        while (cenatowaru == 0) {
+            float nextline = text.nextFloat();
+            if(nextline < 100 || nextline > 10000) {
+                System.out.println("Cena musi mieścić się między 100 a 10000");
+            } else {
+                cenatowaru = nextline;
+            }
+
+            }
+        System.out.println("Podano cenę:" + cenatowaru);
+
+        System.out.println("Podaj ilość rat między 6 a 48:");
+
+        float liczbarat = 0;
+        while (liczbarat == 0) {
+            float nextline = text.nextFloat();
+            if(nextline < 6 || nextline > 10000) {
+                System.out.println("Ilość rat musi się mieścić między 6 a 48");
+            } else {
+                liczbarat = nextline;
+            }
+
+        }
+        System.out.println("Podano raty:" + liczbarat);
+        float oprocentowanie = 0;
+        if(12 >= liczbarat) {
+            oprocentowanie = (float)2.5;
+        } else if (24 >= liczbarat) {
+            oprocentowanie = (float)5;
+
+        } else {
+            oprocentowanie = (float)10;
+
+        }
+        System.out.println("Aktualne oprocentowanie: " + oprocentowanie + "%");
+        float miesiecznacena = cenatowaru / liczbarat;
+        float miesiecznarata = miesiecznacena + (miesiecznacena * (oprocentowanie / 100));
+        System.out.println("Aktualne cena miesięczna z ratą: " + miesiecznarata );
+
+        System.out.println("Kalkulator fajny");
+        System.out.println("Podaj liczbe 1");
+        float liczba1 = text.nextFloat();
+        String symbol = "";
+
+        while(!Objects.equals(symbol, "*") && !Objects.equals(symbol, "+") && !Objects.equals(symbol, "-") && !Objects.equals(symbol, "/")) {
+            System.out.println("Podaj symbol operacji możliwe: |*| i |/| i |+| i |-|");
+            symbol = text.nextLine();
+        }
+        System.out.println("Podaj liczbe 2");
+
+        float liczba2 = text.nextFloat();
+
+        while(Objects.equals(symbol, "/")  && liczba2 == (float)0) {
+            System.out.println("Dzielenie przez zero jest niemozliwe wybierz inna liczbę:");
+            liczba2 = text.nextFloat();
+        }
+        float wynik = 0;
+        switch (symbol) {
+            case "/":
+                wynik = liczba1 / liczba2;
+                break;
+            case "*":
+                wynik = liczba1 * liczba2;
+                break;
+            case "+":
+                wynik = liczba1 + liczba2;
+                break;
+            case "-":
+                wynik = liczba1 - liczba2;
+                break;
+        }
+        System.out.println("Wynik: " + wynik);
+
         return;
     }
 }
